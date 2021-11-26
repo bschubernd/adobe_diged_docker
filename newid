@@ -1,8 +1,19 @@
 #!/bin/sh
 
-if [ "$#" -ne 1 ]; then
-    echo "usage: newid <tag>"
+if [ "$#" -ne 1 ] && [ "$#" -ne 2 ]; then
+    echo "usage: newid <tag> [--manual-id]"
     exit 1
+fi
+
+INSARGS=""
+
+if [ "$#" -eq 2 ]; then
+    if [ "$2" = '--manual-id' ]; then
+        INSARGS='--manual-id'
+    else
+        echo "unknown argument $2"
+        exit 1
+    fi
 fi
 
 if ! (echo "$1" | grep -Eq  ^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$) || [ "$1" = "latest" ]; then
@@ -19,6 +30,6 @@ wget -P container --no-clobber \
 
 docker build --tag adobe_diged_docker .
 container=$(uuidgen)
-docker run -p 127.0.0.1:5900:5900 --name $container adobe_diged_docker sh install.sh
+docker run -p 127.0.0.1:5900:5900 --name $container adobe_diged_docker sh install.sh $INSARGS
 docker commit $container "adobe_diged_docker:$1" >/dev/null
 docker rm $container >/dev/null
