@@ -6,7 +6,7 @@ export WINEARCH=win32
 
 winetricks -q corefonts
 winetricks -q windowscodecs
-winetricks -q dotnet35sp1
+msiexec /i wine-mono-7.0.0-x86.msi
 winetricks -q python27
 
 wine pycrypto-2.6.1.win32-py2.7.exe
