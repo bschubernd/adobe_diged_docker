@@ -67,6 +67,7 @@ file and defaults to the current directory.
 Known Issues
 ------------
 
-This was developed on Arch Linux and it turned out later it doesn't run on
+* This was developed on Arch Linux and it turned out later it doesn't run on
 Debian 10. It works on Debian 11. My best guess is that it
 doesn't work with older kernels.
+* This does not seem to work with ebooks from archive.org, gives error `E_ADEPT_DOCUMENT_TOO_SHORT`. May be possible to fix by using a newer version of .NET (see https://gist.github.com/bmaupin/65ef52ad8ecec81c6ab897f2224dfa38), haven't tried this.
