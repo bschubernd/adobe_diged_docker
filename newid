@@ -30,6 +30,6 @@ wget -P container --no-clobber \
 
 docker build --tag adobe_diged_docker .
 container=$(uuidgen)
-docker run -p 127.0.0.1:5900:5900 --name $container adobe_diged_docker sh install.sh $INSARGS
+docker run -p 127.0.0.1:5900:5900 --name $container adobe_diged_docker bash install.sh $INSARGS
 docker commit $container "adobe_diged_docker:$1" >/dev/null
 docker rm $container >/dev/null

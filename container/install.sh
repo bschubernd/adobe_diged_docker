@@ -1,3 +1,5 @@
+#!/bin/bash
+set -euxo pipefail
 export DISPLAY=:0
 Xvfb :0 -screen 0 1024x768x24 &
 x11vnc -forever &
