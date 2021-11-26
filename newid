@@ -23,7 +23,7 @@ fi
 
 wget -P container --no-clobber \
     http://download.adobe.com/pub/adobe/digitaleditions/ADE_2.0_Installer.exe \
-    http://www.voidspace.org.uk/python/pycrypto-2.6.1/pycrypto-2.6.1.win32-py2.7.exe \
+    https://web.archive.org/web/20190603051225im_/http://www.voidspace.org.uk/python/pycrypto-2.6.1/pycrypto-2.6.1.win32-py2.7.exe \
     https://raw.githubusercontent.com/apprenticeharper/DeDRM_tools/Python2/DeDRM_plugin/adobekey.py \
     https://dl.winehq.org/wine/wine-mono/7.0.0/wine-mono-7.0.0-x86.msi \
  || exit 1
