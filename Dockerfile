@@ -7,6 +7,7 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y \
     x11vnc \
     xvfb \
     procps \
+    p7zip-full \
  && rm -rf /var/lib/apt/lists/*
 
 RUN useradd --home /app --create-home app
