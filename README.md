@@ -4,8 +4,8 @@ Adobe Digital Editions Dockerized
 Runs Adobe Digital Editions 2.0.1 in a Docker container using Wine and automates
 the downloading of e-books from ACSM files.
 
-Authorizing Adobe IDs
----------------------
+Generating new IDs
+------------------
 
 One or more Adobe IDs may be authorized. There will be a Docker image for each
 Adobe ID holding the authorized installation of Adobe Digital Editions. When
@@ -15,12 +15,21 @@ One might for example use the name of the person the Adobe ID belongs to.
     ./newid alice
 
 This will run a Docker container and install a fresh instance of Adobe Digital
-Editions inside. Open a VNC client of your choice
-([TigerVNC](https://tigervnc.org/) works) and connect to `localhost:5900`.
+Editions inside. By default, the script generates a machine key automatically.
+If this is not suitable (you want to use an Adobe ID), run `newid` with the
+parameter `--manual-id` to skip this:
+
+    ./newid alice --manual-id
+
+Authorizing Adobe IDs
+---------------------
+
+To complete the authentication, open a VNC client of your choice
+([TigerVNC](https://tigervnc.org/) works. If you are on a server, try
+[noVNC](https://github.com/novnc/noVNC)) and connect to `localhost:5900`.
 When the script runs for the first time the Dockerfile is built before the VNC
 server starts. Be patient and retry connecting. Once you're connected you will
-likely be seeing a blackscreen. Wait for the Adobe Digital Editions installer to
-pop up and advance the installation. This should open up the application.
+likely be seeing a blackscreen.
 Authorize your Adobe ID under *Help -> Authorize Computer* then exit via
 *File -> Exit* which will stop the container. This creates the Docker image
 `adobe_diged_docker:alice` holding the authorized instance of Adobe Digital
@@ -58,6 +67,7 @@ file and defaults to the current directory.
 Known Issues
 ------------
 
-This was developed on Arch Linux and it turned out later it doesn't run on
+* This was developed on Arch Linux and it turned out later it doesn't run on
 Debian 10. It works on Debian 11. My best guess is that it
 doesn't work with older kernels.
+* This does not seem to work with ebooks from archive.org, gives error `E_ADEPT_DOCUMENT_TOO_SHORT`. May be possible to fix by using a newer version of .NET (see https://gist.github.com/bmaupin/65ef52ad8ecec81c6ab897f2224dfa38), haven't tried this.
