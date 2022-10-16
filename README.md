@@ -76,14 +76,18 @@ Debug
 The scripts `prepare`, `newid`, `bookdl' and `getkey` can be called with the
 option `-d` to enable debug.
 Debug may open a docker shell for testing, to continue you have to type `exit`.
-Debug may start Adobe Digital Editions. To continue you have to click 
+Debug may start Adobe Digital Editions. To continue you have to click
 file->exit in the GUI.
 
 To debug the docker image 'adobe_diged_docker:alice` created with `newid alice',
-without downloading a book or retrieving a key, just to get a shell and 
+without downloading a book or retrieving a key, just to get a shell and
 to start Adobe Digital Editions call:
 
     ./dbgid -d alice
+
+This can also be used to change the Adobe Digital Editions to not
+Automatically download your synced books with the Library =>
+Preferences Menu.
 
 Backup and Restore
 ------------------

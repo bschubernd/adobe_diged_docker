@@ -5,8 +5,8 @@ info()
     echo "INFO: $1" | fold -s >&2
 }
 
-err() 
-{ 
+err()
+{
     echo "ERROR: $1" | fold -s >&2; exit 1
     if [ "$container" ]; then
       docker kill $container
@@ -45,6 +45,8 @@ dbg_container()
 
 cfg()
 {
+    # each docker container needs the same hostname, to be seen as the same host by adobe
+    hostname="adb-$(hostname)"
     vncport=5900
     vncsleep=0
     vncclient=
@@ -104,7 +106,7 @@ run_container()
       [ ! "$vncclient" ] || { sleep $vncsleep; $vncclient localhost:$vncport; } &
     fi
     trap "docker kill $container" EXIT
-    docker run -d --privileged --rm -u $user -p 127.0.0.1:$vncport:5900 --name $container \
+    docker run -d --privileged --rm -u $user -p 127.0.0.1:$vncport:5900 --name $container --hostname $hostname \
         $srcimg tail -f /dev/null
 
     docker exec -u root $container sh -c \
